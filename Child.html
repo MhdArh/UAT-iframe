@@ -8,14 +8,37 @@
 
   <body>
     <style type='text/css'>
-      .embeddedServiceHelpButton .helpButton .uiButton {
-        background-color: #005290;
-        font-family: "Arial", sans-serif;
-      }
-
-    .embeddedServiceHelpButton .helpButton .uiButton:focus {
-      outline: 1px solid #005290;
-    }
+     .embeddedServiceHelpButton .helpButton .uiButton {
+    min-width: unset;
+    max-width: unset;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: unset !important;
+    text-decoration: none;
+    text-align: center;
+    padding: 15px 40px !important;
+    letter-spacing: .1em;
+    border-radius: 8px 8px 0 0;
+    box-sizing: border-box;
+    margin: 0;
+    height: 46px;
+    line-height: 1;
+    font-size: 0.875em;
+    color: #fff;
+    font-weight: normal;
+    text-shadow: none;
+    font-family: inherit;
+    background: red !important;
+    border: none;
+    text-transform: UPPERCASE;
+}
+.embeddedServiceHelpButton .helpButton {
+   position: fixed;
+  bottom: 4px;    right: 12px;
+height: 46px;
+-webkit-font-smoothing: subpixel-antialiased;
+} 
     </style>
 
     <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.js'></script>
