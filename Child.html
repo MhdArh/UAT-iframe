@@ -2,54 +2,103 @@
 
   <head>
     <title>CHAT PAGE</title>
-    <!--    <meta name="viewport" content="width=device-width, initial-scale=1,
-    imum-scale=1, maximum-scale=1, user-scalable=0"> -->
   </head>
 
   <body>
     <style type='text/css'>
+     /* General Styles for the chat button */
      .embeddedServiceHelpButton .helpButton .uiButton {
-    min-width: unset;
-    max-width: unset;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    box-shadow: unset !important;
-    text-decoration: none;
-    text-align: center;
-    padding: 15px 40px !important;
-    letter-spacing: .1em;
-    border-radius: 8px 8px 0 0;
-    box-sizing: border-box;
-    margin: 0;
-    height: 46px;
-    line-height: 1;
-    font-size: 0.875em;
-    color: #fff;
-    font-weight: normal;
-    text-shadow: none;
-    font-family: inherit;
-    background: red !important;
-    border: none;
-    text-transform: UPPERCASE;
-}
-.embeddedServiceHelpButton .helpButton {
-   position: fixed;
-  bottom: 0px;    right: 12px;
-height: 46px;
--webkit-font-smoothing: subpixel-antialiased;
-} 
-.embeddedServiceSidebarMinimizedDefaultUI {
- background-color: red !important;
- border: none !important;
-}
-.embeddedServiceSidebarMinimizedDefaultUI:hover {
- background-color: red !important;
- border: none !important;
-}
-.embeddedServiceHelpButton .helpButton .helpButtonEnabled:hover::before, .embeddedServiceHelpButton .helpButton .helpButtonEnabled:focus::before {
-border-radius: unset;
-}
+        min-width: unset;
+        max-width: unset;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-shadow: unset !important;
+        text-decoration: none;
+        text-align: center;
+        padding: 15px 40px !important;
+        letter-spacing: .1em;
+        border-radius: 8px 8px 0 0;
+        box-sizing: border-box;
+        margin: 0;
+        height: 46px;
+        line-height: 1;
+        font-size: 0.875em;
+        color: #fff;
+        font-weight: normal;
+        text-shadow: none;
+        font-family: inherit;
+        background: red !important;
+        border: none;
+        text-transform: UPPERCASE;
+     }
+
+     .embeddedServiceHelpButton .helpButton {
+        position: fixed;
+        bottom: 0px;
+        right: 12px;
+        height: 46px;
+        -webkit-font-smoothing: subpixel-antialiased;
+     }
+
+     .embeddedServiceSidebarMinimizedDefaultUI {
+        background-color: red !important;
+        border: none !important;
+     }
+
+     .embeddedServiceSidebarMinimizedDefaultUI:hover {
+        background-color: red !important;
+        border: none !important;
+     }
+
+     .embeddedServiceHelpButton .helpButton .helpButtonEnabled:hover::before,
+     .embeddedServiceHelpButton .helpButton .helpButtonEnabled:focus::before {
+        border-radius: unset;
+     }
+
+     /* Media queries for mobile */
+     @media (max-width: 768px) {
+        /* Adjust chat button for mobile devices */
+        .embeddedServiceHelpButton .helpButton {
+          right: 10px;
+          bottom: 10px;
+          height: 40px; /* Smaller height */
+          width: 80px;  /* Adjust width */
+          padding: 10px 20px;
+        }
+
+        /* Adjust the minimized chat window */
+        .embeddedServiceSidebarMinimizedDefaultUI {
+          width: 80% !important; /* 80% of screen width */
+          height: 50% !important; /* 50% of screen height */
+        }
+
+        /* Adjust the expanded chat window */
+        .dockableContainer {
+          width: 80% !important; /* 80% of screen width */
+          height: 60% !important; /* 60% of screen height */
+        }
+     }
+
+     @media (max-width: 480px) {
+        /* Further adjustments for smaller screens */
+        .embeddedServiceHelpButton .helpButton {
+          right: 8px;
+          bottom: 8px;
+          height: 36px;
+          width: 70px;
+        }
+
+        .embeddedServiceSidebarMinimizedDefaultUI {
+          width: 75% !important; /* 75% of screen width */
+          height: 40% !important; /* 40% of screen height */
+        }
+
+        .dockableContainer {
+          width: 75% !important; /* 75% of screen width */
+          height: 50% !important; /* 50% of screen height */
+        }
+     }
     </style>
 
     <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.js'></script>
@@ -64,35 +113,35 @@ border-radius: unset;
         var height = helpButton.clientHeight;
         var width = helpButton.clientWidth;
         window.parent.postMessage({
-                                  frameHeight: height,
-                                  frameWidth: width
-                                  }, '*'); // Used a * but for security reasons you can plug in the domain name.
+          frameHeight: height,
+          frameWidth: width
+        }, '*'); // Used a * but for security reasons you can plug in the domain name.
       }
       window.onload = helpButtonLoaded();
 
       var initESW = function(gslbBaseURL) {
-		embedded_svc.settings.displayHelpButton = true;
-		embedded_svc.settings.language = '';
-		if (window.location.href.includes('cmfgroup.com')) {
+        embedded_svc.settings.displayHelpButton = true;
+        embedded_svc.settings.language = '';
+        if (window.location.href.includes('cmfgroup.com')) {
             embedded_svc.settings.storageDomain = 'cmfgroup.com';
         }
-		embedded_svc.settings.enabledFeatures = ['LiveAgent'];
-		embedded_svc.settings.entryFeature = 'LiveAgent';
-		embedded_svc.init(
-			'https://cmfgroup--uat.sandbox.my.salesforce.com',
-			'https://cmfgroup--uat.sandbox.my.site.com/',
-			gslbBaseURL,
-			'00DVZ000000IpTt',
-			'Chat_Team',
-			{
-				baseLiveAgentContentURL: 'https://c.la2s-core1.sfdc-8tgtt5.salesforceliveagent.com/content',
-				deploymentId: '572VZ000000Gxyc',
-				buttonId: '573VZ0000002VhF',
-				baseLiveAgentURL: 'https://d.la2s-core1.sfdc-8tgtt5.salesforceliveagent.com/chat',
-				eswLiveAgentDevName: 'Chat_Team',
-				isOfflineSupportEnabled: false
-			}
-		);
+        embedded_svc.settings.enabledFeatures = ['LiveAgent'];
+        embedded_svc.settings.entryFeature = 'LiveAgent';
+        embedded_svc.init(
+          'https://cmfgroup--uat.sandbox.my.salesforce.com',
+          'https://cmfgroup--uat.sandbox.my.site.com/',
+          gslbBaseURL,
+          '00DVZ000000IpTt',
+          'Chat_Team',
+          {
+            baseLiveAgentContentURL: 'https://c.la2s-core1.sfdc-8tgtt5.salesforceliveagent.com/content',
+            deploymentId: '572VZ000000Gxyc',
+            buttonId: '573VZ0000002VhF',
+            baseLiveAgentURL: 'https://d.la2s-core1.sfdc-8tgtt5.salesforceliveagent.com/chat',
+            eswLiveAgentDevName: 'Chat_Team',
+            isOfflineSupportEnabled: false
+          }
+        );
 
         embedded_svc.addEventHandler("afterMinimize", function() {
           var sidebar = document.querySelector('.embeddedServiceSidebarMinimizedDefaultUI');
@@ -101,7 +150,7 @@ border-radius: unset;
           window.parent.postMessage({
             frameHeight: height,
             frameWidth: width
-           }, '*');
+          }, '*');
         });
 
         embedded_svc.addEventHandler("afterMaximize", function() {
@@ -125,15 +174,15 @@ border-radius: unset;
       };
 
      if (!window.embedded_svc) {
-		var s = document.createElement('script');
-		s.setAttribute('src', 'https://cmfgroup--uat.sandbox.my.salesforce.com/embeddedservice/5.0/esw.min.js');
-		s.onload = function() {
-			initESW(null);
-		};
-		document.body.appendChild(s);
-	} else {
-		initESW('https://service.force.com');
-	}
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://cmfgroup--uat.sandbox.my.salesforce.com/embeddedservice/5.0/esw.min.js');
+        s.onload = function() {
+          initESW(null);
+        };
+        document.body.appendChild(s);
+     } else {
+        initESW('https://service.force.com');
+     }
 
     </script>
   </body>
