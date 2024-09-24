@@ -119,15 +119,15 @@ border-radius: unset;
            }, '*');
         });
 
-        embedded_svc.addEventHandler("afterMinimize", function() {
-          var sidebar = document.querySelector('.embeddedServiceSidebarMinimizedDefaultUI');
-          var height = sidebar.clientHeight;
-          var width = sidebar.clientWidth;
-          window.parent.postMessage({
-            frameHeight: height,
-            frameWidth: width
-           }, '*');
-        });
+        //embedded_svc.addEventHandler("afterMinimize", function() {
+          //var sidebar = document.querySelector('.embeddedServiceSidebarMinimizedDefaultUI');
+          //var height = sidebar.clientHeight;
+          //var width = sidebar.clientWidth;
+          //window.parent.postMessage({
+            //frameHeight: height,
+            //frameWidth: width
+           //}, '*');
+        //});
 
         embedded_svc.addEventHandler("afterDestroy", function() {
           var height = document.querySelector('.helpButton').clientHeight;
