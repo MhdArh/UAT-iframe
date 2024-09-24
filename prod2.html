@@ -119,14 +119,14 @@ border-radius: unset;
            }, '*');
         });
 
-        embedded_svc.addEventHandler("afterMaximize", function() {
-          var container = document.querySelector('.dockableContainer');
-          var height = container.clientHeight;
-          var width = container.clientWidth;
+        embedded_svc.addEventHandler("afterMinimize", function() {
+          var sidebar = document.querySelector('.embeddedServiceSidebarMinimizedDefaultUI');
+          var height = sidebar.clientHeight;
+          var width = sidebar.clientWidth;
           window.parent.postMessage({
-            frameHeight: embedded_svc.settings.widgetHeight,
-            frameWidth: embedded_svc.settings.widgetWidth
-          }, '*');
+            frameHeight: height,
+            frameWidth: width
+           }, '*');
         });
 
         embedded_svc.addEventHandler("afterDestroy", function() {
