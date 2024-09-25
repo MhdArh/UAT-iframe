@@ -78,6 +78,7 @@
       window.onload = helpButtonLoaded();
 
       var initESW = function(gslbBaseURL) {
+        console.log("----->",embedded_svc.settings.widgetWidth);
         embedded_svc.settings.extraPrechatFormDetails = [{ label: "Width", value: "200px"}];
         embedded_svc.settings.widgetWidth = "200px";
         embedded_svc.settings.displayHelpButton = true;
