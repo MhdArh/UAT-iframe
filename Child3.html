@@ -97,6 +97,8 @@ border-radius: unset;
       window.onload = helpButtonLoaded();
 
       var initESW = function(gslbBaseURL) {
+        embedded_svc.settings.widgetWidth = "100px";
+
         embedded_svc.settings.displayHelpButton = true;
         embedded_svc.settings.language = '';
         if (window.location.href.includes('cmfgroup.com')) {
