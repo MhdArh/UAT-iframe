@@ -138,6 +138,8 @@ border-radius: unset;
             frameHeight: embedded_svc.settings.widgetHeight,
             frameWidth: embedded_svc.settings.widgetWidth
           }, '*');
+            embedded_svc.settings.widgetWidth = width-20;
+
         });
 
         embedded_svc.addEventHandler("afterDestroy", function() {
