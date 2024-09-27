@@ -73,6 +73,15 @@
 
     <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.js'></script>
     <script type='text/javascript'>
+        // Function to send the height of the iframe to the parent
+  function sendHeight() {
+    var height = document.body.scrollHeight;
+    parent.postMessage({ frameHeight: height }, "*");
+  }
+
+  // Call sendHeight when the page loads or when the content changes
+  window.onload = sendHeight;
+  window.onresize = sendHeight;
       // On page load set the correct size of the iframe to account for either CWAE/Contact Us or Session Continuity.
       function helpButtonLoaded() {
         var helpButton = document.querySelector('.helpButton');
