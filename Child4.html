@@ -82,6 +82,16 @@
   // Call sendHeight when the page loads or when the content changes
   window.onload = sendHeight;
   window.onresize = sendHeight;
+        // Use MutationObserver to detect DOM changes (e.g., chatbot expanding)
+  const observer = new MutationObserver(function() {
+    sendHeight();
+  });
+
+  // Start observing changes in the entire body
+  observer.observe(document.body, { childList: true, subtree: true, attributes: true });
+
+  // Send the height periodically (in case mutations aren't captured immediately)
+  setInterval(sendHeight, 1000);
       // On page load set the correct size of the iframe to account for either CWAE/Contact Us or Session Continuity.
       function helpButtonLoaded() {
         var helpButton = document.querySelector('.helpButton');
