@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 
   <head>
@@ -46,28 +45,35 @@
         background-color: red !important;
         border: none !important;
         bottom: 0px !important;
-        position: fixed !important;
+         position: fixed !important;
         height: 46px !important;
-        width: 250px !important;
+       width: 250px !important
+        
+     }
+
+     .embeddedServiceSidebarMinimizedDefaultUI:hover {
+        background-color: red !important;
+        border: none !important;
      }
 
      .embeddedServiceHelpButton .helpButton .helpButtonEnabled:hover::before,
      .embeddedServiceHelpButton .helpButton .helpButtonEnabled:focus::before {
         border-radius: unset !important;
      }
-
     .embeddedServiceSidebar.sidebarMaximized {
         background: rgb(51 51 51 / 0%) !important;
-        position: fixed !important;
-        bottom: 0px !important;
-        min-width: unset !important;
+      position: fixed !important;
+      bottom: 0px !important;
+      min-width: unset !important;
+       
     }
 
+    
     </style>
 
     <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.js'></script>
     <script type='text/javascript'>
-      // On page load, set iframe size based on help button size
+      // On page load set the correct size of the iframe to account for either CWAE/Contact Us or Session Continuity.
       function helpButtonLoaded() {
         var helpButton = document.querySelector('.helpButton');
         if (!helpButton) {
@@ -77,28 +83,24 @@
         var height = helpButton.clientHeight;
         var width = helpButton.clientWidth;
         window.parent.postMessage({
-          chatState: 'minimized',
           frameHeight: height,
           frameWidth: width
-        }, '*'); // Send to parent window
+        }, '*'); // Used a * but for security reasons you can plug in the domain name.
       }
-
       window.onload = helpButtonLoaded();
 
       var initESW = function(gslbBaseURL) {
         embedded_svc.settings.styles = { mobile: { width: '80%' } };
+        console.log("----->",embedded_svc.settings.widgetWidth);
         embedded_svc.settings.extraPrechatFormDetails = [{ label: "Width", value: "80%"}];
         embedded_svc.settings.widgetWidth = "80%";
         embedded_svc.settings.displayHelpButton = true;
         embedded_svc.settings.language = '';
-
         if (window.location.href.includes('cmfgroup.com')) {
-          embedded_svc.settings.storageDomain = 'cmfgroup.com';
+            embedded_svc.settings.storageDomain = 'cmfgroup.com';
         }
-
         embedded_svc.settings.enabledFeatures = ['LiveAgent'];
         embedded_svc.settings.entryFeature = 'LiveAgent';
-
         embedded_svc.init(
           'https://cmfgroup--uat.sandbox.my.salesforce.com',
           'https://cmfgroup--uat.sandbox.my.site.com/',
@@ -115,55 +117,49 @@
           }
         );
 
-        // Event handler for minimizing the chat
         embedded_svc.addEventHandler("afterMinimize", function() {
           var sidebar = document.querySelector('.embeddedServiceSidebarMinimizedDefaultUI');
           var height = sidebar.clientHeight;
           var width = sidebar.clientWidth;
           window.parent.postMessage({
-            chatState: 'minimized',
             frameHeight: height,
             frameWidth: width
           }, '*');
         });
 
-        // Event handler for maximizing the chat
         embedded_svc.addEventHandler("afterMaximize", function() {
+          embedded_svc.settings.extraPrechatFormDetails = [{ label: "Width", value: "80%"}];
+          embedded_svc.settings.widgetWidth = "80%";
           var container = document.querySelector('.dockableContainer');
-          var height = container ? container.clientHeight : 500;  // Default height if container is not found
-          var width = container ? container.clientWidth : '80%'; // Default width
-
+          var height = container.clientHeight;
+          var width = container.clientWidth;
           window.parent.postMessage({
-            chatState: 'open',
-            frameHeight: height,
-            frameWidth: width
+            frameHeight: embedded_svc.settings.widgetHeight,
+            frameWidth: embedded_svc.settings.widgetWidth
           }, '*');
         });
 
-        // Event handler for closing the chat (destroy)
         embedded_svc.addEventHandler("afterDestroy", function() {
-          var helpButton = document.querySelector('.helpButton');
-          var height = helpButton.clientHeight;
-          var width = helpButton.clientWidth;
+          var height = document.querySelector('.helpButton').clientHeight;
+          var width = document.querySelector('.helpButton').clientWidth;
           window.parent.postMessage({
-            chatState: 'closed',
             frameHeight: height,
             frameWidth: width
           }, '*');
         });
       };
 
-      // Check if the embedded service script is loaded and initialize
-      if (!window.embedded_svc) {
+     if (!window.embedded_svc) {
         var s = document.createElement('script');
         s.setAttribute('src', 'https://cmfgroup--uat.sandbox.my.salesforce.com/embeddedservice/5.0/esw.min.js');
         s.onload = function() {
           initESW(null);
         };
         document.body.appendChild(s);
-      } else {
+     } else {
         initESW('https://service.force.com');
-      }
+     }
+
     </script>
   </body>
 </html>
