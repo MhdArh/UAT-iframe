@@ -119,8 +119,8 @@
           var width = sidebar.clientWidth;
           console.log('Tesst-02');
           window.parent.postMessage({
-            frameHeight: height,
-            frameWidth: width
+            isChatFrame: true,
+            isOpen: false
           }, '*');
         });
 
@@ -132,6 +132,7 @@
           var width = container.clientWidth;
           console.log('Tesst-03');
           window.parent.postMessage({
+            isChatFrame: true,
             isOpen: true
           }, '*');
         });
@@ -141,8 +142,8 @@
           var width = document.querySelector('.helpButton').clientWidth;
           console.log('Tesst-04');
           window.parent.postMessage({
-            frameHeight: height,
-            frameWidth: width
+            isChatFrame: true,
+            isOpen: false
           }, '*');
         });
       };
