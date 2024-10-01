@@ -75,21 +75,17 @@
           window.setTimeout(helpButtonLoaded, 500);
           return;
         }
-        var height = helpButton.clientHeight;
-        var width = helpButton.clientWidth;
-        console.log('Tesst-01');
         window.parent.postMessage({
-          frameHeight: height,
-          frameWidth: width
-        }, '*'); // Used a * but for security reasons you can plug in the domain name.
+            isChatFrame: true,
+            isOpen: false
+        }, '*');
       }
       window.onload = helpButtonLoaded();
 
       var initESW = function(gslbBaseURL) {
-        embedded_svc.settings.styles = { mobile: { width: '80%' } };
-        console.log("----->",embedded_svc.settings.widgetWidth);
-        embedded_svc.settings.extraPrechatFormDetails = [{ label: "Width", value: "80%"}];
-        embedded_svc.settings.widgetWidth = "80%";
+        // embedded_svc.settings.styles = { mobile: { width: '80%' } };
+        //embedded_svc.settings.extraPrechatFormDetails = [{ label: "Width", value: "80%"}];
+        // embedded_svc.settings.widgetWidth = "80%";
         embedded_svc.settings.displayHelpButton = true;
         embedded_svc.settings.language = '';
         if (window.location.href.includes('cmfgroup.com')) {
@@ -114,10 +110,6 @@
         );
 
         embedded_svc.addEventHandler("afterMinimize", function() {
-          var sidebar = document.querySelector('.embeddedServiceSidebarMinimizedDefaultUI');
-          var height = sidebar.clientHeight;
-          var width = sidebar.clientWidth;
-          console.log('Tesst-02');
           window.parent.postMessage({
             isChatFrame: true,
             isOpen: false
@@ -125,12 +117,6 @@
         });
 
         embedded_svc.addEventHandler("afterMaximize", function() {
-          embedded_svc.settings.extraPrechatFormDetails = [{ label: "Width", value: "80%"}];
-          embedded_svc.settings.widgetWidth = "80%";
-          var container = document.querySelector('.dockableContainer');
-          var height = container.clientHeight;
-          var width = container.clientWidth;
-          console.log('Tesst-03');
           window.parent.postMessage({
             isChatFrame: true,
             isOpen: true
@@ -138,9 +124,6 @@
         });
 
         embedded_svc.addEventHandler("afterDestroy", function() {
-          var height = document.querySelector('.helpButton').clientHeight;
-          var width = document.querySelector('.helpButton').clientWidth;
-          console.log('Tesst-04');
           window.parent.postMessage({
             isChatFrame: true,
             isOpen: false
