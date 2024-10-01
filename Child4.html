@@ -117,6 +117,7 @@
           var sidebar = document.querySelector('.embeddedServiceSidebarMinimizedDefaultUI');
           var height = sidebar.clientHeight;
           var width = sidebar.clientWidth;
+          console.log('Tesst-02');
           window.parent.postMessage({
             frameHeight: height,
             frameWidth: width
@@ -129,6 +130,7 @@
           var container = document.querySelector('.dockableContainer');
           var height = container.clientHeight;
           var width = container.clientWidth;
+          console.log('Tesst-03');
           window.parent.postMessage({
             frameHeight: embedded_svc.settings.widgetHeight,
             frameWidth: embedded_svc.settings.widgetWidth
@@ -138,6 +140,7 @@
         embedded_svc.addEventHandler("afterDestroy", function() {
           var height = document.querySelector('.helpButton').clientHeight;
           var width = document.querySelector('.helpButton').clientWidth;
+          console.log('Tesst-04');
           window.parent.postMessage({
             frameHeight: height,
             frameWidth: width
