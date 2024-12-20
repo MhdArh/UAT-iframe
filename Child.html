@@ -72,7 +72,8 @@
         var width = helpButton.clientWidth;
         window.parent.postMessage({
           frameHeight: height,
-          frameWidth: width
+          frameWidth: width,
+          initiate: true
         }, '*'); // Used a * but for security reasons you can plug in the domain name.
       }
       window.onload = helpButtonLoaded();
