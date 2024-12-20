@@ -64,6 +64,26 @@
         chatFrame.style.height = 100%;
         chatFrame.style.width = 100%;
       }
+	  if (e.data.hasOwnProperty("initiate")) {
+		setTimeout(function () {
+		  var inviteDiv = document.getElementById("snapins_invite");
+		  if (inviteDiv) {
+			var windowHeight = window.innerHeight;
+			var topPosition = windowHeight / 2;
+	  
+			inviteDiv.style.position = "absolute";
+			inviteDiv.style.left = "100px";
+			inviteDiv.style.top = topPosition + "px"; // Set top to 50% of window height
+			inviteDiv.style.zIndex = "10000";
+			inviteDiv.style.visibility = "visible";
+			inviteDiv.style.animationDuration = "1s";
+			inviteDiv.style.animationIterationCount = "2";
+			inviteDiv.style.animationDirection = "alternate";
+			inviteDiv.style.animationTimingFunction = "ease-in-out";
+			inviteDiv.style.animationPlayState = "paused";
+		  }
+		}, 10000); // Delay execution by 10 seconds
+	  }
     };
   </script>
   <body>
