@@ -40,27 +40,29 @@
 		  }
 		}
 		#snapins_invite {
-		    position: absolute;
-		    background-color: #FFFFFF;
-		    font-family: "Arial", sans-serif;
-		    overflow: visible;
-		    border-radius: 8px;
-		    max-width: 290px;
-		    max-height: 210px;
-		    -webkit-box-shadow: 0 7px 12px rgba(0, 0, 0, 0.28);
-		    -moz-box-shadow: 0 7px 12px rgba(0, 0, 0, 0.28);
-		    box-shadow: 0 7px 12px rgba(0, 0, 0, 0.28);
-		    top: calc(45vh);
-		    right: 0;
-		    transform: translateX(100%); /* Start off-screen */
-		    display: none; /* Initially hidden */
-		    transition: transform 0.5s ease-in-out; /* Smooth slide-in */
-		    z-index: 10000;
+		  position: absolute;
+		  background-color: #FFFFFF;
+		  font-family: "Arial", sans-serif;
+		  overflow: visible;
+		  border-radius: 8px;
+		  max-width: 290px;
+		  max-height: 210px;
+		  -webkit-box-shadow: 0 7px 12px rgba(0, 0, 0, 0.28);
+		  -moz-box-shadow: 0 7px 12px rgba(0, 0, 0, 0.28);
+		  box-shadow: 0 7px 12px rgba(0, 0, 0, 0.28);
+		  top: calc(45vh);
+		  right: 0;
+		  transform: translateX(100%); /* Start off-screen */
+		  opacity: 0; /* Initially invisible */
+		  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out; /* Smooth slide-in and fade-in */
+		  z-index: 10000;
+		  display: none; /* Hidden by default */
 		}
-	
+		
 		#snapins_invite.isOpen {
-		    display: unset; /* Make it visible */
-		    transform: translateX(0); /* Slide into view */
+		  display: block; /* Make it visible in the layout */
+		  transform: translateX(0); /* Slide into view */
+		  opacity: 1; /* Fade-in */
 		}
 		@media only screen and (min-width: 48em) {
 
@@ -205,10 +207,13 @@
 	<script type="text/javascript" src="path/to/prototype.js"></script>
 	<script type="application/javascript">
 		setTimeout(function () {
-			var inviteDiv = document.getElementById("snapins_invite");
-			if (inviteDiv) {
-				inviteDiv.classList.add("isOpen");
-			}
+		  var inviteDiv = document.getElementById("snapins_invite");
+		  if (inviteDiv) {
+		    inviteDiv.style.display = "block"; // Make it visible in the layout
+		    setTimeout(function () {
+		      inviteDiv.classList.add("isOpen"); // Trigger the animation
+		    }, 10); // Small delay to ensure the transition works
+		  }
 		}, 10000); // Delay of 10 seconds
 	</script>
 </head>
