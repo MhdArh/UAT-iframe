@@ -40,28 +40,27 @@
 		  }
 		}
 		#snapins_invite {
-		  position: absolute;
-		  background-color: #FFFFFF;
-		  font-family: "Arial", sans-serif;
-		  overflow: visible;
-		  border-radius: 8px;
-		  visibility: hidden; /* Initially hidden */
-		  max-width: 290px;
-		  max-height: 210px;
-		  -webkit-box-shadow: 0 7px 12px rgba(0, 0, 0, 0.28);
-		  -moz-box-shadow: 0 7px 12px rgba(0, 0, 0, 0.28);
-		  box-shadow: 0 7px 12px rgba(0, 0, 0, 0.28);
-		  top: calc(45vh); /* Position vertically */
-		  right: 0px;
-		  transform: translateX(100%); /* Start off-screen */
-		  transition: transform 0.5s ease-in-out, visibility 0s linear 0.5s; /* Smooth slide-in */
-		  z-index: 10000;
+		    position: absolute;
+		    background-color: #FFFFFF;
+		    font-family: "Arial", sans-serif;
+		    overflow: visible;
+		    border-radius: 8px;
+		    max-width: 290px;
+		    max-height: 210px;
+		    -webkit-box-shadow: 0 7px 12px rgba(0, 0, 0, 0.28);
+		    -moz-box-shadow: 0 7px 12px rgba(0, 0, 0, 0.28);
+		    box-shadow: 0 7px 12px rgba(0, 0, 0, 0.28);
+		    top: calc(45vh);
+		    right: 0;
+		    transform: translateX(100%); /* Start off-screen */
+		    display: none; /* Initially hidden */
+		    transition: transform 0.5s ease-in-out; /* Smooth slide-in */
+		    z-index: 10000;
 		}
-		
+	
 		#snapins_invite.isOpen {
-		  visibility: visible; /* Make it visible */
-		  transform: translateX(0); /* Slide into view */
-		  transition: transform 0.5s ease-in-out; /* Slide in smoothly */
+		    display: unset; /* Make it visible */
+		    transform: translateX(0); /* Slide into view */
 		}
 		@media only screen and (min-width: 48em) {
 
